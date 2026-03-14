@@ -2,7 +2,6 @@
 
 ## 1. Business Context
 
-**Client:** M2G2 Patrimonial
 **Problem:** Reading Brazilian property registration documents (*Matrículas de Imóveis*) is a slow, manual process. Analysts must read multi-page scanned PDFs, interpret chronological annotations (*averbações*), compute net built areas, identify active encumbrances, and manually plot properties on a map.
 **Goal:** Automate this workflow end-to-end using multimodal AI and a web interface, reducing processing time from ~30 minutes per document to under 2 minutes.
 

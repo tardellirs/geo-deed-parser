@@ -11,7 +11,7 @@ export function Header() {
         </div>
         <div>
           <h1 className="text-sm font-semibold leading-none">Geo Deed Parser</h1>
-          <p className="text-xs text-muted-foreground">M2G2 Patrimonial</p>
+          <p className="text-xs text-muted-foreground">Extração de Matrículas</p>
         </div>
       </div>
     </header>

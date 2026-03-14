@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Geo Deed Parser | M2G2 Patrimonial",
+  title: "Geo Deed Parser",
   description:
     "Extração automatizada de dados de matrículas de imóveis e plotagem espacial",
 };

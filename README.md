@@ -2,7 +2,7 @@
 
 AI-powered web application that extracts structured data from Brazilian property registration documents (*Matrículas de Imóveis*) and plots properties on an interactive map.
 
-Built for **M2G2 Patrimonial** to automate the manual, time-consuming process of reading scanned cartório PDFs and georeferencing real estate assets.
+Built to automate the manual, time-consuming process of reading scanned cartório PDFs and georeferencing real estate assets.
 
 ---
 
@@ -226,4 +226,4 @@ interface MatriculaData {
 
 ## License
 
-Proprietary — M2G2 Patrimonial. All rights reserved.
+MIT License — free to use, modify, and distribute.
