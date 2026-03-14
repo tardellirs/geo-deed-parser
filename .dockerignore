@@ -1,0 +1,11 @@
+.git
+.gitignore
+.env*
+.next
+node_modules
+README.md
+REQUIREMENTS.md
+CLAUDE.md
+.claude/
+nginx/
+.github/

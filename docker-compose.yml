@@ -1,0 +1,20 @@
+services:
+  find-app:
+    build:
+      context: .
+      args:
+        # Passed at build time so Next.js can bake it into the client bundle
+        NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+    image: find-app:latest
+    container_name: find-app
+    restart: unless-stopped
+    environment:
+      # Server-side only — injected at runtime
+      - GOOGLE_GEMINI_API_KEY=${GOOGLE_GEMINI_API_KEY}
+      - GOOGLE_MAPS_SERVER_KEY=${GOOGLE_MAPS_SERVER_KEY}
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
