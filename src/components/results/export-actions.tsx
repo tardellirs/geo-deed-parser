@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Download, RotateCcw, Copy } from "lucide-react";
+import { Download, RotateCcw, Copy, Globe } from "lucide-react";
 import { useAppStore } from "@/stores/app-store";
 import { useCallback, useState } from "react";
 
@@ -15,6 +15,10 @@ export function ExportActions({ onReset }: ExportActionsProps) {
   const [copied, setCopied] = useState(false);
 
   const canExportKml = !!geocoding;
+
+  const googleEarthUrl = geocoding
+    ? `https://earth.google.com/web/@${geocoding.lat},${geocoding.lng},2000a,20000d,0y,0t,0r`
+    : null;
 
   const handleExportKml = useCallback(async () => {
     if (!matricula || !geocoding) return;
@@ -70,37 +74,71 @@ export function ExportActions({ onReset }: ExportActionsProps) {
   }, [matricula]);
 
   return (
-    <div className="flex gap-2">
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <span>
-            <Button
-              variant="default"
-              size="sm"
-              onClick={handleExportKml}
-              disabled={!canExportKml}
-            >
-              <Download className="h-3.5 w-3.5 mr-1.5" />
-              Exportar KML
-            </Button>
-          </span>
-        </TooltipTrigger>
-        {!canExportKml && (
-          <TooltipContent>
-            <p>Sem dados de localização para exportar</p>
-          </TooltipContent>
-        )}
-      </Tooltip>
+    <div className="space-y-2">
+      <div className="flex flex-wrap gap-2">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span>
+              <Button
+                variant="default"
+                size="sm"
+                asChild={!!googleEarthUrl}
+                disabled={!googleEarthUrl}
+              >
+                {googleEarthUrl ? (
+                  <a href={googleEarthUrl} target="_blank" rel="noopener noreferrer">
+                    <Globe className="h-3.5 w-3.5 mr-1.5" />
+                    Visão 3D (Google Earth)
+                  </a>
+                ) : (
+                  <>
+                    <Globe className="h-3.5 w-3.5 mr-1.5" />
+                    Visão 3D (Google Earth)
+                  </>
+                )}
+              </Button>
+            </span>
+          </TooltipTrigger>
+          {!googleEarthUrl && (
+            <TooltipContent>
+              <p>Sem dados de localização para abrir no Google Earth</p>
+            </TooltipContent>
+          )}
+        </Tooltip>
 
-      <Button variant="outline" size="sm" onClick={handleCopy}>
-        <Copy className="h-3.5 w-3.5 mr-1.5" />
-        {copied ? "Copiado!" : "Copiar"}
-      </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleExportKml}
+                disabled={!canExportKml}
+              >
+                <Download className="h-3.5 w-3.5 mr-1.5" />
+                Baixar KML
+              </Button>
+            </span>
+          </TooltipTrigger>
+          {!canExportKml && (
+            <TooltipContent>
+              <p>Sem dados de localização para exportar</p>
+            </TooltipContent>
+          )}
+        </Tooltip>
+      </div>
 
-      <Button variant="ghost" size="sm" onClick={onReset}>
-        <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
-        Nova Matrícula
-      </Button>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" onClick={handleCopy}>
+          <Copy className="h-3.5 w-3.5 mr-1.5" />
+          {copied ? "Copiado!" : "Copiar"}
+        </Button>
+
+        <Button variant="ghost" size="sm" onClick={onReset}>
+          <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
+          Nova Matrícula
+        </Button>
+      </div>
     </div>
   );
 }
