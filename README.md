@@ -224,6 +224,73 @@ interface MatriculaData {
 
 ---
 
+## Docker & Deployment
+
+### Running with Docker (local)
+
+```bash
+# Build and start
+docker compose up -d --build
+
+# Stop
+docker compose down
+```
+
+> `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` is baked into the client bundle at build time.
+> `GOOGLE_GEMINI_API_KEY` and `GOOGLE_MAPS_SERVER_KEY` are injected at runtime via environment variables.
+
+---
+
+### Production — CI/CD via GitHub Actions
+
+Every push to `main` triggers the pipeline automatically:
+
+1. **Build** — GitHub Actions builds a multi-arch Docker image (`linux/amd64` + `linux/arm64`)
+2. **Push** — image is published to GitHub Container Registry (`ghcr.io`)
+3. **Deploy** — pipeline SSHs into the production server, pulls the new image and restarts the container
+
+```
+git push origin main
+  → Build (~5 min, multi-arch QEMU emulation)
+  → Push to ghcr.io/tardellirs/geo-deed-parser:latest
+  → SSH → docker compose pull + docker compose up -d
+```
+
+#### Required GitHub Secrets
+
+| Secret | Description |
+|--------|-------------|
+| `SERVER_HOST` | Production server IP |
+| `SERVER_USER` | SSH user (e.g. `ubuntu`) |
+| `SERVER_SSH_KEY` | Private SSH key authorized on the server |
+| `CR_PAT` | GitHub classic token with `read:packages` scope (for server to pull from GHCR) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Google Maps JS API key (baked into the image at build time) |
+
+#### Production server setup (one-time)
+
+```bash
+# Create shared Docker network
+docker network create web
+
+# Connect nginx to the shared network
+docker network connect web isocronas-nginx
+
+# Create deployment directory with environment file
+mkdir -p /opt/geo-deed-parser
+cat > /opt/geo-deed-parser/.env << EOF
+GOOGLE_GEMINI_API_KEY=your_key
+GOOGLE_MAPS_SERVER_KEY=your_key
+EOF
+
+# Copy the production docker-compose.yml
+cp docker-compose.yml /opt/geo-deed-parser/docker-compose.yml
+
+# Authenticate with GHCR
+echo "YOUR_CR_PAT" | docker login ghcr.io -u YOUR_GITHUB_USER --password-stdin
+```
+
+---
+
 ## License
 
 MIT License — free to use, modify, and distribute.
