@@ -12,7 +12,7 @@ Eliminate the manual review of degraded registry PDFs. By leveraging Google Gemi
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)
 
-📡 **https://find.imob.dev** — Oracle Ampere (ARM64) | Cloudflare SSL | Automatic deploy via GitHub Actions
+🖥️ Running on Oracle Ampere (ARM64) | Cloudflare SSL | Automatic deploy via GitHub Actions
 
 ---
 
