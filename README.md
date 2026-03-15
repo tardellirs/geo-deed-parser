@@ -1,6 +1,6 @@
 # 📄 Geo Deed Parser
 
-Aplicação web com IA que extrai dados estruturados de **matrículas de imóveis** em PDF e plota os imóveis em mapa interativo, automatizando a leitura manual de documentos cartoriais e o georreferenciamento de ativos imobiliários.
+AI-powered web application that extracts structured data from Brazilian property registration documents (*Matrículas de Imóveis*) and plots properties on an interactive map — automating the manual reading of cartório PDFs and the georeferencing of real estate assets.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
@@ -10,7 +10,7 @@ Aplicação web com IA que extrai dados estruturados de **matrículas de imóvei
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)
 
-📡 **https://find.imob.dev** — Oracle Ampere (ARM64) | Cloudflare SSL | Deploy automático via GitHub Actions
+📡 **https://find.imob.dev** — Oracle Ampere (ARM64) | Cloudflare SSL | Automatic deploy via GitHub Actions
 
 ---
 
