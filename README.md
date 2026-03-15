@@ -1,6 +1,8 @@
 # 📄 Geo Deed Parser
 
-AI-powered web application that extracts structured data from Brazilian property registration documents (*Matrículas de Imóveis*) and plots properties on an interactive map — automating the manual reading of cartório PDFs and the georeferencing of real estate assets.
+Geo Deed Parser is an AI-powered spatial intelligence tool that transforms unstructured Brazilian property deeds into interactive maps and structured data.
+
+Eliminate the manual review of degraded registry PDFs. By leveraging Google Gemini's multimodal engine, the system chronologically parses historical records, calculates built areas, and flags legal encumbrances. It automatically computes property polygons and georeferences assets on Google Maps, delivering instant KML exports for advanced topographic analysis in Google Earth.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
